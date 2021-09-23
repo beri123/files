@@ -6,7 +6,7 @@ const execSync = require('child_process').execSync;
 
 function onRequest(request, response) {
     try {
-        response.setHeader('Access-Control-Allow-Origin', '*');
+        response.setHeader('Access-Control-Allow-Origin', 'https://ayo.ju.edu.et');
         response.setHeader('Access-Control-Request-Method', 'OPTIONS, GET');
         response.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET');
         response.setHeader('Access-Control-Allow-Headers', 'Origin, Accept, X-Requested-With, Content-Type, Authorization');
