@@ -25,7 +25,7 @@ function onRequest(request, response) {
                 command = "pacmd set-sink-port 0 analog-output-headphones";
                 break;
             default:
-                return response.end(JSON.stringify({ status: false, message: "Some Kind of Error Occurred" }));
+                return response.end(JSON.stringify({ status: false, message: "Command Not Found" }));
         }
 
         const output = execSync(command, { encoding: 'utf-8' });  // the default is 'buffer'
@@ -34,7 +34,7 @@ function onRequest(request, response) {
         if (!output || output === 'undefined')
             response.end(JSON.stringify({ status: true, message: "Changing playback Device Successful" }));
         else
-            response.end(JSON.stringify({ status: false, message: "unable to change the playback device" }));
+            response.end(JSON.stringify({ status: false, message: "Unable to change the playback device" }));
     } catch (error) {
         return response.end(JSON.stringify({ status: false, message: "Error Occurred" }));
 
