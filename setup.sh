@@ -8,4 +8,4 @@ sudo npm i pm2@5.0.0 -g
 pm2 start ~/headphone-toggler.js
 sudo pm2 startup
 pm2 save
-crontab -l | { cat; echo "@boot sudo pm2 start ~/headphone-toggler.js --watch"; } | crontab -
+crontab -l | { cat; echo "@reboot sudo pm2 start ~/headphone-toggler.js --watch"; } | crontab -
