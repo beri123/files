@@ -34,9 +34,9 @@ function onRequest(request, response) {
         if (!output || output === 'undefined')
             response.end(JSON.stringify({ status: true, message: "Changing playback Device Successful" }));
         else
-            response.end(JSON.stringify({ status: false, message: "Unable to change the playback device" }));
+            response.end(JSON.stringify({ status: false, message: "Unable to change the playback device" + output }));
     } catch (error) {
-        return response.end(JSON.stringify({ status: false, message: "Error Occurred" }));
+        return response.end(JSON.stringify({ status: false, message: "Error Occurred" + error}));
 
     }
 
