@@ -19,10 +19,10 @@ function onRequest(request, response) {
             case 'STATUS':
                 return response.end(JSON.stringify({ status: true, message: "OK" }));
             case 'TO_SPEAKER':
-                command = "pacmd set-sink-port 0 analog-output-speaker";
+                command = "pacmd set-sink-port 1 analog-output-speaker";
                 break;
             case 'TO_HEADPHONE':
-                command = "pacmd set-sink-port 0 analog-output-headphones";
+                command = "pacmd set-sink-port 1 analog-output-headphones";
                 break;
             default:
                 return response.end(JSON.stringify({ status: false, message: "Command Not Found" }));
