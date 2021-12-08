@@ -10,6 +10,11 @@ function onRequest(request, response) {
         response.setHeader('Access-Control-Request-Method', 'OPTIONS, GET');
         response.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET');
         response.setHeader('Access-Control-Allow-Headers', 'Origin, Accept, X-Requested-With, Content-Type, Authorization');
+	let output = execSync("pacmd list | grep 'analog-output-headphones'");
+	//response.end(JSON.stringify({ status: true, message: "you did not plugged a headphone" }));
+        if(output != null && output.toString().includes("available: no)")){ 
+        return response.end(JSON.stringify({ status: true, message: "you did not plugged a headphone" }));
+        }
 
         var params;
         var command;
@@ -28,7 +33,7 @@ function onRequest(request, response) {
                 return response.end(JSON.stringify({ status: false, message: "Command Not Found" }));
         }
 
-        const output = execSync(command, { encoding: 'utf-8' });  // the default is 'buffer'
+        output = execSync(command, { encoding: 'utf-8' });  // the default is 'buffer'
 
         response.writeHead(200, { 'Content-Type': 'application/json' });
         if (!output || output === 'undefined')
@@ -42,5 +47,6 @@ function onRequest(request, response) {
 
 
 }
-
+const output = execSync("pacmd list | grep 'analog-output-headphones'");
+console.log(output.toString());
 http.createServer(onRequest).listen(10023);
